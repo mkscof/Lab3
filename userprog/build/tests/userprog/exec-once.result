@@ -1,0 +1,24 @@
+FAIL
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (exec-once) begin
+  (child-simple) run
+  child-simple: exit(81)
+  (exec-once) end
+  exec-once: exit(0)
+Differences in `diff -u' format:
+- (exec-once) begin
+- (child-simple) run
+- child-simple: exit(81)
+- (exec-once) end
+- exec-once: exit(0)
++ Base Address: 0xc0000000
++ Page fault at 0xc0000008: rights violation error reading page in user context.
++ exec-once: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486a7
++  cr2=c0000008 error=00000005
++  eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffec ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
++ exec-once: exit(-1)
