@@ -1,6 +1,6 @@
 Copying tests/userprog/open-twice to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/UpqkWgehP5.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/p1I6aiSHDb.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run open-twice
@@ -21,21 +21,20 @@ Putting 'open-twice' into the file system...
 Putting 'sample.txt' into the file system...
 Erasing ustar archive...
 Executing 'open-twice':
-Base Address: 0xc0000000
-Page fault at 0xc0000008: rights violation error reading page in user context.
+Page fault at 0xc0000000: rights violation error reading page in user context.
 open-twice: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804871c
- cr2=c0000008 error=00000005
- eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
- esi=00000000 edi=00000000 esp=bfffffec ebp=00000000
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8049c1c
+ cr2=c0000000 error=00000005
+ eax=0000000a ebx=bffffff6 ecx=ffffffff edx=bffffff6
+ esi=0804ab7d edi=bfffff60 esp=bffffe8c ebp=bfffff5c
  cs=001b ds=0023 es=0023 ss=0023
 open-twice: exit(-1)
 Execution of 'open-twice' complete.
-Timer: 93 ticks
-Thread: 45 idle ticks, 46 kernel ticks, 2 user ticks
+Timer: 89 ticks
+Thread: 44 idle ticks, 43 kernel ticks, 2 user ticks
 hda2 (filesys): 220 reads, 193 writes
 hda3 (scratch): 96 reads, 2 writes
-Console: 1301 characters output
+Console: 1276 characters output
 Keyboard: 0 keys pressed
 Exception: 1 page faults
 Powering off...

@@ -1,4 +1,4 @@
-FAIL tests/userprog/args-none
+pass tests/userprog/args-none
 FAIL tests/userprog/args-single
 FAIL tests/userprog/args-multiple
 FAIL tests/userprog/args-many

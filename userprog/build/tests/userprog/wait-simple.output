@@ -1,6 +1,6 @@
 Copying tests/userprog/wait-simple to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/OHTn47EjVo.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/jvRMgUQ9te.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run wait-simple
@@ -21,21 +21,20 @@ Putting 'wait-simple' into the file system...
 Putting 'child-simple' into the file system...
 Erasing ustar archive...
 Executing 'wait-simple':
-Base Address: 0xc0000000
-Page fault at 0xc0000008: rights violation error reading page in user context.
+Page fault at 0xc0000000: rights violation error reading page in user context.
 wait-simple: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486b5
- cr2=c0000008 error=00000005
- eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
- esi=00000000 edi=00000000 esp=bfffffec ebp=00000000
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8049bb5
+ cr2=c0000000 error=00000005
+ eax=0000000a ebx=bffffff6 ecx=ffffffff edx=bffffff6
+ esi=0804aae0 edi=bfffff60 esp=bffffe8c ebp=bfffff5c
  cs=001b ds=0023 es=0023 ss=0023
 wait-simple: exit(-1)
 Execution of 'wait-simple' complete.
-Timer: 100 ticks
-Thread: 48 idle ticks, 50 kernel ticks, 2 user ticks
+Timer: 94 ticks
+Thread: 45 idle ticks, 47 kernel ticks, 2 user ticks
 hda2 (filesys): 401 reads, 372 writes
 hda3 (scratch): 185 reads, 2 writes
-Console: 1312 characters output
+Console: 1286 characters output
 Keyboard: 0 keys pressed
 Exception: 1 page faults
 Powering off...

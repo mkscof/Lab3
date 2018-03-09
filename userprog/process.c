@@ -66,15 +66,34 @@ static bool load(const char *cmdline, void (**eip) (void), void **esp);
  * format binary has been loaded into the heap by load();
  */
 static void
-push_command(const char *cmdline UNUSED, void **esp)
+push_command(const char *cmdline, void **esp)
 {
-    printf("Base Address: 0x%08x\n", (unsigned int) *esp);
+    //printf("Base Address: 0x%08x\n", (unsigned int) *esp);
+    void *arr[3];
+
+    *esp -= 10;
+    *esp = memcpy(*esp, cmdline, strlen(cmdline));
+    arr[0] = *esp;
 
     // Word align with the stack pointer. 
     *esp = (void*) ((unsigned int) (*esp) & 0xfffffffc);
 
-    // Some of your CMPS111 Lab 3 code will go here.
-    //
+    *esp -= 4;
+    *((int*)*esp) = 0;
+
+    *esp -= 4;
+    *((int*)*esp) = arr[0];
+    arr[1] = *esp;
+
+    *esp -= 4;
+    *((int*)*esp) = arr[1];
+
+    *esp -= 4;
+    *((int*)*esp) = 1;
+
+    *esp -= 4;
+    *((int*)*esp) = 0;
+
     // You'll be doing address arithmetic here and that's one of only a handful 
     // of situations in which it is acceptable to have comments inside functions. 
     //

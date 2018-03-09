@@ -1,6 +1,6 @@
 Copying tests/userprog/exec-once to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/BCVwfOiUAK.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/UM60sR4AC6.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run exec-once
@@ -21,21 +21,14 @@ Putting 'exec-once' into the file system...
 Putting 'child-simple' into the file system...
 Erasing ustar archive...
 Executing 'exec-once':
-Base Address: 0xc0000000
-Page fault at 0xc0000008: rights violation error reading page in user context.
-exec-once: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80486a7
- cr2=c0000008 error=00000005
- eax=00000000 ebx=00000000 ecx=00000000 edx=00000000
- esi=00000000 edi=00000000 esp=bfffffec ebp=00000000
- cs=001b ds=0023 es=0023 ss=0023
-exec-once: exit(-1)
+(exec-once) begin
+[ERROR] system call 2 is unimplemented!
 Execution of 'exec-once' complete.
 Timer: 101 ticks
-Thread: 49 idle ticks, 51 kernel ticks, 1 user ticks
+Thread: 52 idle ticks, 48 kernel ticks, 1 user ticks
 hda2 (filesys): 399 reads, 370 writes
 hda3 (scratch): 184 reads, 2 writes
-Console: 1300 characters output
+Console: 940 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...
