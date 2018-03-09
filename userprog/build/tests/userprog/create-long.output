@@ -1,5 +1,5 @@
 Copying tests/userprog/create-long to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/bC3EC8kij7.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/uCk83dBQqj.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run create-long
@@ -22,8 +22,8 @@ Executing 'create-long':
 (create-long) begin
 [ERROR] system call 4 is unimplemented!
 Execution of 'create-long' complete.
-Timer: 98 ticks
-Thread: 52 idle ticks, 46 kernel ticks, 0 user ticks
+Timer: 99 ticks
+Thread: 55 idle ticks, 45 kernel ticks, 0 user ticks
 hda2 (filesys): 216 reads, 189 writes
 hda3 (scratch): 94 reads, 2 writes
 Console: 900 characters output

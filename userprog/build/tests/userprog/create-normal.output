@@ -1,5 +1,5 @@
 Copying tests/userprog/create-normal to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/oz5h48HLEz.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/0pGsdgg4dU.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run create-normal

@@ -1,6 +1,6 @@
 Copying tests/userprog/wait-twice to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/tlrLIgjZCP.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/VrxwYFtXBl.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run wait-twice
@@ -24,8 +24,8 @@ Executing 'wait-twice':
 (wait-twice) begin
 [ERROR] system call 2 is unimplemented!
 Execution of 'wait-twice' complete.
-Timer: 114 ticks
-Thread: 62 idle ticks, 51 kernel ticks, 1 user ticks
+Timer: 110 ticks
+Thread: 61 idle ticks, 48 kernel ticks, 1 user ticks
 hda2 (filesys): 401 reads, 372 writes
 hda3 (scratch): 185 reads, 2 writes
 Console: 945 characters output

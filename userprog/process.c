@@ -37,6 +37,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "userprog/tss.h"
 #include "filesys/directory.h"
@@ -82,7 +83,7 @@ push_command(const char *cmdline, void **esp)
 		stackInsert[argc++] = *esp;
 	}
 
-	palloc_free_page(buffs);
+	//palloc_free_page(buffs);
 
 	// Word align with the stack pointer.
 	*esp = (void*) ((unsigned int) (*esp) & 0xfffffffc);
@@ -130,13 +131,21 @@ process_execute(const char *cmdline)
 {
     // Make a copy of CMDLINE to avoid a race condition between the caller and load() 
     char *cmdline_copy = palloc_get_page(0);
+    char *cmdline_copy2 = palloc_get_page(0);
+
     if (cmdline_copy == NULL) 
+        return TID_ERROR;
+    if (cmdline_copy2 == NULL)
         return TID_ERROR;
     
     strlcpy(cmdline_copy, cmdline, PGSIZE);
+    strlcpy(cmdline_copy2, cmdline, PGSIZE);
+
+    char *token;
+    	token = strtok_r(cmdline_copy, " ", &cmdline_copy);
 
     // Create a Kernel Thread for the new process
-    tid_t tid = thread_create(cmdline, PRI_DEFAULT, start_process, cmdline_copy);
+    tid_t tid = thread_create(token, PRI_DEFAULT, start_process, cmdline_copy2);
     timer_sleep(20);
 
     // CMPS111 Lab 3 : The "parent" thread immediately returns after creating 
@@ -162,7 +171,16 @@ start_process(void *cmdline)
     pif.cs = SEL_UCSEG;
     pif.eflags = FLAG_IF | FLAG_MBS;
 
-    bool success = load(cmdline, &pif.eip, &pif.esp);
+    const char *buff = (const char *) palloc_get_page(0);
+    	strlcpy(buff, cmdline, PGSIZE);
+
+    	//get first arg
+    char *token;
+	token = strtok_r(buff, " ", &buff);
+
+	//palloc_free_page(buff);
+
+    bool success = load(token, &pif.eip, &pif.esp);
     if (success) {
         push_command(cmdline, &pif.esp);
     }
