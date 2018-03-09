@@ -8,16 +8,9 @@ Acceptable output:
   (close-normal) end
   close-normal: exit(0)
 Differences in `diff -u' format:
-- (close-normal) begin
-- (close-normal) open "sample.txt"
+  (close-normal) begin
+  (close-normal) open "sample.txt"
 - (close-normal) close "sample.txt"
 - (close-normal) end
 - close-normal: exit(0)
-+ Page fault at 0xc0000000: rights violation error reading page in user context.
-+ close-normal: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8049bd9
-+  cr2=c0000000 error=00000005
-+  eax=0000000a ebx=bffffff6 ecx=ffffffff edx=bffffff6
-+  esi=0804ab15 edi=bfffff60 esp=bffffe8c ebp=bfffff5c
-+  cs=001b ds=0023 es=0023 ss=0023
-+ close-normal: exit(-1)
++ [ERROR] system call 6 is unimplemented!

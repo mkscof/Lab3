@@ -8,16 +8,9 @@ Acceptable output:
   (open-twice) end
   open-twice: exit(0)
 Differences in `diff -u' format:
-- (open-twice) begin
+  (open-twice) begin
 - (open-twice) open "sample.txt" once
 - (open-twice) open "sample.txt" again
 - (open-twice) end
 - open-twice: exit(0)
-+ Page fault at 0xc0000000: rights violation error reading page in user context.
-+ open-twice: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8049c1c
-+  cr2=c0000000 error=00000005
-+  eax=0000000a ebx=bffffff6 ecx=ffffffff edx=bffffff6
-+  esi=0804ab7d edi=bfffff60 esp=bffffe8c ebp=bfffff5c
-+  cs=001b ds=0023 es=0023 ss=0023
-+ open-twice: exit(-1)
++ [ERROR] system call 6 is unimplemented!

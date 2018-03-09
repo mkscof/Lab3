@@ -68,31 +68,46 @@ static bool load(const char *cmdline, void (**eip) (void), void **esp);
 static void
 push_command(const char *cmdline, void **esp)
 {
-    //printf("Base Address: 0x%08x\n", (unsigned int) *esp);
-    void *arr[3];
+	//printf("Base Address: 0x%08x\n", (unsigned int) *esp);
 
-    *esp -= 10;
-    *esp = memcpy(*esp, cmdline, strlen(cmdline));
-    arr[0] = *esp;
+	const char *buff = (const char *) palloc_get_page(0);
+	strlcpy(buff, cmdline, PGSIZE);
+	int argc = 0;
+	char *buffs = buff;
+	char *token;
+	char *stackInsert[32];
+	while(token = strtok_r(buff, " ", &buff)){
+		*esp -= strlen(token) + 1;
+		memcpy(*esp, token, strlen(token) + 1);
+		stackInsert[argc++] = *esp;
+	}
 
-    // Word align with the stack pointer. 
-    *esp = (void*) ((unsigned int) (*esp) & 0xfffffffc);
+	palloc_free_page(buffs);
 
-    *esp -= 4;
-    *((int*)*esp) = 0;
+	// Word align with the stack pointer.
+	*esp = (void*) ((unsigned int) (*esp) & 0xfffffffc);
 
-    *esp -= 4;
-    *((int*)*esp) = arr[0];
-    arr[1] = *esp;
+	//NULL Sentinel
+	*esp -= 4;
+	*((void**)*esp) = 0;
 
-    *esp -= 4;
-    *((int*)*esp) = arr[1];
+	//argv address insert
+	for(int i = argc - 1; i >= 0; i--){
+		*esp -= 4;
+		*((void**)*esp) = stackInsert[i];
+	}
 
-    *esp -= 4;
-    *((int*)*esp) = 1;
+	//Insert argv itself
+	*esp -= 4;
+	*((void**)*esp) = *esp + 4;
 
-    *esp -= 4;
-    *((int*)*esp) = 0;
+	//argc
+	*esp -= 4;
+	*((int*)*esp) = argc;
+
+	//fake return address
+	*esp -= 4;
+	*((void**)*esp) = 0;
 
     // You'll be doing address arithmetic here and that's one of only a handful 
     // of situations in which it is acceptable to have comments inside functions. 
@@ -122,7 +137,7 @@ process_execute(const char *cmdline)
 
     // Create a Kernel Thread for the new process
     tid_t tid = thread_create(cmdline, PRI_DEFAULT, start_process, cmdline_copy);
-    timer_sleep(10);
+    timer_sleep(20);
 
     // CMPS111 Lab 3 : The "parent" thread immediately returns after creating 
     // the child. To get ANY of the tests passing, you need to synchronise the 

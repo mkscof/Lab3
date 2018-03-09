@@ -1,6 +1,6 @@
 Copying tests/userprog/close-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/lIRf8NzUeQ.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/8WtNz0xd1H.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run close-normal
@@ -21,20 +21,15 @@ Putting 'close-normal' into the file system...
 Putting 'sample.txt' into the file system...
 Erasing ustar archive...
 Executing 'close-normal':
-Page fault at 0xc0000000: rights violation error reading page in user context.
-close-normal: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8049bd9
- cr2=c0000000 error=00000005
- eax=0000000a ebx=bffffff6 ecx=ffffffff edx=bffffff6
- esi=0804ab15 edi=bfffff60 esp=bffffe8c ebp=bfffff5c
- cs=001b ds=0023 es=0023 ss=0023
-close-normal: exit(-1)
+(close-normal) begin
+(close-normal) open "sample.txt"
+[ERROR] system call 6 is unimplemented!
 Execution of 'close-normal' complete.
-Timer: 96 ticks
-Thread: 51 idle ticks, 45 kernel ticks, 0 user ticks
+Timer: 101 ticks
+Thread: 54 idle ticks, 46 kernel ticks, 1 user ticks
 hda2 (filesys): 219 reads, 193 writes
 hda3 (scratch): 96 reads, 2 writes
-Console: 1288 characters output
+Console: 984 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

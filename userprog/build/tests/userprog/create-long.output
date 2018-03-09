@@ -1,5 +1,5 @@
 Copying tests/userprog/create-long to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/qKPGMU1rwk.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/bC3EC8kij7.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run create-long
@@ -19,20 +19,14 @@ Extracting ustar archive from scratch device into file system...
 Putting 'create-long' into the file system...
 Erasing ustar archive...
 Executing 'create-long':
-Page fault at 0xc0000000: rights violation error reading page in user context.
-create-long: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8049bca
- cr2=c0000000 error=00000005
- eax=0000000a ebx=bffffff6 ecx=ffffffff edx=bffffff6
- esi=0804aae8 edi=bfffff60 esp=bffffe8c ebp=bfffff5c
- cs=001b ds=0023 es=0023 ss=0023
-create-long: exit(-1)
+(create-long) begin
+[ERROR] system call 4 is unimplemented!
 Execution of 'create-long' complete.
-Timer: 93 ticks
-Thread: 47 idle ticks, 45 kernel ticks, 1 user ticks
+Timer: 98 ticks
+Thread: 52 idle ticks, 46 kernel ticks, 0 user ticks
 hda2 (filesys): 216 reads, 189 writes
 hda3 (scratch): 94 reads, 2 writes
-Console: 1237 characters output
+Console: 900 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

@@ -1,5 +1,5 @@
 Copying tests/userprog/open-missing to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/KF7OwgoS9k.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/qk2szTkhY3.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run open-missing
@@ -19,20 +19,14 @@ Extracting ustar archive from scratch device into file system...
 Putting 'open-missing' into the file system...
 Erasing ustar archive...
 Executing 'open-missing':
-Page fault at 0xc0000000: rights violation error reading page in user context.
-open-missing: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8049bb5
- cr2=c0000000 error=00000005
- eax=0000000a ebx=bffffff6 ecx=ffffffff edx=bffffff6
- esi=0804aae1 edi=bfffff60 esp=bffffe8c ebp=bfffff5c
- cs=001b ds=0023 es=0023 ss=0023
-open-missing: exit(-1)
+(open-missing) begin
+[ERROR] system call 6 is unimplemented!
 Execution of 'open-missing' complete.
-Timer: 94 ticks
-Thread: 48 idle ticks, 45 kernel ticks, 1 user ticks
+Timer: 101 ticks
+Thread: 55 idle ticks, 46 kernel ticks, 0 user ticks
 hda2 (filesys): 216 reads, 189 writes
 hda3 (scratch): 94 reads, 2 writes
-Console: 1243 characters output
+Console: 906 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...
