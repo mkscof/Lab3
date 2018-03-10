@@ -1,6 +1,6 @@
 Copying tests/userprog/close-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/0gB0jVnCE1.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/So6eqDvFjQ.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run close-normal
@@ -23,13 +23,14 @@ Erasing ustar archive...
 Executing 'close-normal':
 (close-normal) begin
 (close-normal) open "sample.txt"
-[ERROR] system call 6 is unimplemented!
+(close-normal) close "sample.txt"
+[ERROR] system call 12 is unimplemented!
 Execution of 'close-normal' complete.
-Timer: 98 ticks
-Thread: 51 idle ticks, 48 kernel ticks, 0 user ticks
+Timer: 99 ticks
+Thread: 51 idle ticks, 46 kernel ticks, 2 user ticks
 hda2 (filesys): 219 reads, 193 writes
 hda3 (scratch): 96 reads, 2 writes
-Console: 983 characters output
+Console: 1018 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

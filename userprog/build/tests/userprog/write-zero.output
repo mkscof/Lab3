@@ -1,6 +1,6 @@
 Copying tests/userprog/write-zero to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/MyWH53QGqg.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/iOXT0YTO6N.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run write-zero
@@ -23,13 +23,14 @@ Erasing ustar archive...
 Executing 'write-zero':
 (write-zero) begin
 (write-zero) open "sample.txt"
-[ERROR] system call 6 is unimplemented!
+(write-zero) write() returned -1 instead of 0: FAILED
+write-zero: exit(1)
 Execution of 'write-zero' complete.
-Timer: 103 ticks
-Thread: 58 idle ticks, 44 kernel ticks, 1 user ticks
+Timer: 98 ticks
+Thread: 51 idle ticks, 46 kernel ticks, 1 user ticks
 hda2 (filesys): 219 reads, 193 writes
 hda3 (scratch): 96 reads, 2 writes
-Console: 972 characters output
+Console: 1005 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

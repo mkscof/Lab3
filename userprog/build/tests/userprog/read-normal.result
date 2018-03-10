@@ -15,4 +15,4 @@ Differences in `diff -u' format:
 - (read-normal) close "sample.txt"
 - (read-normal) end
 - read-normal: exit(0)
-+ [ERROR] system call 6 is unimplemented!
++ [ERROR] system call 7 is unimplemented!

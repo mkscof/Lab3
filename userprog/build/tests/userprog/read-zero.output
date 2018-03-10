@@ -1,6 +1,6 @@
 Copying tests/userprog/read-zero to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/zq97MnbWRa.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/ZpHAJQSveC.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run read-zero
@@ -23,10 +23,10 @@ Erasing ustar archive...
 Executing 'read-zero':
 (read-zero) begin
 (read-zero) open "sample.txt"
-[ERROR] system call 6 is unimplemented!
+[ERROR] system call 8 is unimplemented!
 Execution of 'read-zero' complete.
-Timer: 101 ticks
-Thread: 52 idle ticks, 48 kernel ticks, 1 user ticks
+Timer: 100 ticks
+Thread: 55 idle ticks, 44 kernel ticks, 1 user ticks
 hda2 (filesys): 220 reads, 193 writes
 hda3 (scratch): 96 reads, 2 writes
 Console: 966 characters output

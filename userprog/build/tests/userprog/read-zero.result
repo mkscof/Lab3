@@ -11,4 +11,4 @@ Differences in `diff -u' format:
   (read-zero) open "sample.txt"
 - (read-zero) end
 - read-zero: exit(0)
-+ [ERROR] system call 6 is unimplemented!
++ [ERROR] system call 8 is unimplemented!
