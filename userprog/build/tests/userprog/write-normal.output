@@ -1,6 +1,6 @@
 Copying tests/userprog/write-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/Dztx0LNiCw.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/YNzVMjGRE8.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run write-normal
@@ -23,13 +23,14 @@ Erasing ustar archive...
 Executing 'write-normal':
 (write-normal) begin
 (write-normal) create "test.txt"
-[ERROR] system call 4 is unimplemented!
+(write-normal) open "test.txt"
+[ERROR] system call 6 is unimplemented!
 Execution of 'write-normal' complete.
-Timer: 99 ticks
-Thread: 52 idle ticks, 46 kernel ticks, 1 user ticks
-hda2 (filesys): 222 reads, 195 writes
+Timer: 103 ticks
+Thread: 56 idle ticks, 47 kernel ticks, 0 user ticks
+hda2 (filesys): 224 reads, 197 writes
 hda3 (scratch): 97 reads, 2 writes
-Console: 983 characters output
+Console: 1015 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

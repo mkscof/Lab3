@@ -36,6 +36,7 @@
 
 #include "userprog/process.h"
 
+bool create(char *fname, int isize);
 void syscall_init(void);
 void sys_exit(int);
 

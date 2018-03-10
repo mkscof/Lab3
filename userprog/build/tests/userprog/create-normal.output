@@ -1,5 +1,5 @@
 Copying tests/userprog/create-normal to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/0pGsdgg4dU.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/6X1eECnlhd.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run create-normal
@@ -21,13 +21,14 @@ Erasing ustar archive...
 Executing 'create-normal':
 (create-normal) begin
 (create-normal) create quux.dat
-[ERROR] system call 4 is unimplemented!
+(create-normal) end
+create-normal: exit(0)
 Execution of 'create-normal' complete.
-Timer: 100 ticks
-Thread: 53 idle ticks, 46 kernel ticks, 1 user ticks
-hda2 (filesys): 216 reads, 189 writes
+Timer: 103 ticks
+Thread: 58 idle ticks, 45 kernel ticks, 0 user ticks
+hda2 (filesys): 219 reads, 193 writes
 hda3 (scratch): 94 reads, 2 writes
-Console: 943 characters output
+Console: 946 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

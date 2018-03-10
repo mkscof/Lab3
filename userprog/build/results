@@ -3,10 +3,10 @@ pass tests/userprog/args-single
 pass tests/userprog/args-multiple
 pass tests/userprog/args-many
 pass tests/userprog/args-dbl-space
-FAIL tests/userprog/create-empty
-FAIL tests/userprog/create-long
-FAIL tests/userprog/create-normal
-FAIL tests/userprog/create-exists
+pass tests/userprog/create-empty
+pass tests/userprog/create-long
+pass tests/userprog/create-normal
+pass tests/userprog/create-exists
 FAIL tests/userprog/open-missing
 FAIL tests/userprog/open-normal
 FAIL tests/userprog/open-twice

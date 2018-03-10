@@ -1,4 +1,4 @@
-TOTAL TESTING SCORE: 60.0%
+TOTAL TESTING SCORE: 70.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -8,9 +8,9 @@ Test Set                                      Pts Max  % Ttl  % Max
 --------------------------------------------- --- --- ------ ------
 tests/userprog/Rubric.process                   1/  1  40.0%/ 40.0%
 tests/userprog/Rubric.arguments                 4/  4  20.0%/ 20.0%
-tests/userprog/Rubric.systemcalls               0/ 16   0.0%/ 40.0%
+tests/userprog/Rubric.systemcalls               4/ 16  10.0%/ 40.0%
 --------------------------------------------- --- --- ------ ------
-Total                                                  60.0%/100.0%
+Total                                                  70.0%/100.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -38,10 +38,10 @@ Argument Passing (tests/userprog/Rubric.arguments):
 System Calls (tests/userprog/Rubric.systemcalls):
 
 	- "create" system call.
-	  ** 0/ 1 tests/userprog/create-empty
-	  ** 0/ 1 tests/userprog/create-long
-	  ** 0/ 1 tests/userprog/create-normal
-	  ** 0/ 1 tests/userprog/create-exists
+	     1/ 1 tests/userprog/create-empty
+	     1/ 1 tests/userprog/create-long
+	     1/ 1 tests/userprog/create-normal
+	     1/ 1 tests/userprog/create-exists
 
 	- "open" system call.
 	  ** 0/ 1 tests/userprog/open-missing
@@ -68,6 +68,6 @@ System Calls (tests/userprog/Rubric.systemcalls):
 	  ** 0/ 1 tests/userprog/wait-twice
 
 	- Section summary.
-	      0/ 16 tests passed
-	      0/ 16 points subtotal
+	      4/ 16 tests passed
+	      4/ 16 points subtotal
 

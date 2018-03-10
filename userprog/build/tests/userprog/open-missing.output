@@ -1,5 +1,5 @@
 Copying tests/userprog/open-missing to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/hwLCRmLuYu.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/sJrrT2OKrR.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run open-missing
@@ -22,11 +22,11 @@ Executing 'open-missing':
 (open-missing) begin
 [ERROR] system call 6 is unimplemented!
 Execution of 'open-missing' complete.
-Timer: 99 ticks
-Thread: 54 idle ticks, 45 kernel ticks, 0 user ticks
+Timer: 105 ticks
+Thread: 57 idle ticks, 46 kernel ticks, 2 user ticks
 hda2 (filesys): 216 reads, 189 writes
 hda3 (scratch): 94 reads, 2 writes
-Console: 905 characters output
+Console: 906 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
