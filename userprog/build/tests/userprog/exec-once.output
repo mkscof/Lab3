@@ -1,6 +1,6 @@
 Copying tests/userprog/exec-once to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/h8jCjBrL11.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/J8d5ZjE3mg.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run exec-once
@@ -25,7 +25,7 @@ Executing 'exec-once':
 [ERROR] system call 2 is unimplemented!
 Execution of 'exec-once' complete.
 Timer: 103 ticks
-Thread: 53 idle ticks, 51 kernel ticks, 0 user ticks
+Thread: 56 idle ticks, 46 kernel ticks, 1 user ticks
 hda2 (filesys): 399 reads, 370 writes
 hda3 (scratch): 184 reads, 2 writes
 Console: 940 characters output

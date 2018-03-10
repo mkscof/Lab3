@@ -7,14 +7,14 @@ pass tests/userprog/create-empty
 pass tests/userprog/create-long
 pass tests/userprog/create-normal
 pass tests/userprog/create-exists
-FAIL tests/userprog/open-missing
+pass tests/userprog/open-missing
 pass tests/userprog/open-normal
 pass tests/userprog/open-twice
 FAIL tests/userprog/read-normal
 FAIL tests/userprog/read-zero
 FAIL tests/userprog/write-normal
 FAIL tests/userprog/write-zero
-FAIL tests/userprog/close-normal
+pass tests/userprog/close-normal
 FAIL tests/userprog/exec-once
 FAIL tests/userprog/exec-multiple
 FAIL tests/userprog/wait-simple

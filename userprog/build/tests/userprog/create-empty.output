@@ -1,5 +1,5 @@
 Copying tests/userprog/create-empty to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/nPfK7ZBS5J.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/vJXrb0rynv.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run create-empty
@@ -24,11 +24,11 @@ Executing 'create-empty':
 (create-empty) end
 create-empty: exit(0)
 Execution of 'create-empty' complete.
-Timer: 99 ticks
-Thread: 54 idle ticks, 45 kernel ticks, 0 user ticks
+Timer: 103 ticks
+Thread: 57 idle ticks, 46 kernel ticks, 0 user ticks
 hda2 (filesys): 219 reads, 192 writes
 hda3 (scratch): 94 reads, 2 writes
-Console: 935 characters output
+Console: 936 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

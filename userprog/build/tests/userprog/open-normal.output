@@ -1,13 +1,13 @@
 Copying tests/userprog/open-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/X1PkZT9e8u.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/VLVf0Eyzem.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run open-normal
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  419,020,800 loops/s.
+Calibrating timer...  438,272,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 194 sectors (97 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -25,8 +25,8 @@ Executing 'open-normal':
 (open-normal) end
 open-normal: exit(0)
 Execution of 'open-normal' complete.
-Timer: 102 ticks
-Thread: 55 idle ticks, 46 kernel ticks, 1 user ticks
+Timer: 113 ticks
+Thread: 57 idle ticks, 55 kernel ticks, 1 user ticks
 hda2 (filesys): 219 reads, 193 writes
 hda3 (scratch): 96 reads, 2 writes
 Console: 945 characters output
