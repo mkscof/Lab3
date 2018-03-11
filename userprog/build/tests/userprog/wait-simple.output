@@ -1,6 +1,6 @@
 Copying tests/userprog/wait-simple to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/SASDcqUH88.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/HQPzZ8eGrT.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run wait-simple
@@ -24,8 +24,8 @@ Executing 'wait-simple':
 (wait-simple) begin
 [ERROR] system call 2 is unimplemented!
 Execution of 'wait-simple' complete.
-Timer: 104 ticks
-Thread: 54 idle ticks, 48 kernel ticks, 2 user ticks
+Timer: 105 ticks
+Thread: 56 idle ticks, 49 kernel ticks, 0 user ticks
 hda2 (filesys): 401 reads, 372 writes
 hda3 (scratch): 185 reads, 2 writes
 Console: 950 characters output

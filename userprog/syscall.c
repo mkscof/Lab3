@@ -58,11 +58,23 @@ static void create_handler(struct intr_frame *);
 static void open_handler(struct intr_frame *);
 static void close_handler(struct intr_frame *);
 static void read_handler(struct intr_frame *);
+static void exec_handler(struct intr_frame *);
+static void wait_handler(struct intr_frame *);
+
+struct filePair{
+	struct list_elem pairElem;
+	struct file *file;
+	char *name;
+	int handle;
+};
+
+struct list *openFiles;
 
 void
 syscall_init (void)
 {
   intr_register_int (0x30, 3, INTR_ON, syscall_handler, "syscall");
+  list_init(&openFiles);
 }
 
 static void
@@ -133,6 +145,12 @@ static int sys_open(char *fname, int isize){
 	if(filesys_open(fname) == NULL){
 		return -1;
 	}
+	struct filePair newPair;
+	newPair.file = filesys_open(fname);
+	newPair.name = fname;
+	newPair.handle = isize;
+	list_push_back(&openFiles, &newPair.pairElem);
+
 	return isize;
 }
 
@@ -144,15 +162,23 @@ static void open_handler(struct intr_frame *f){
 	f->eax = sys_open(fname, isize);
 }
 
-static sys_close(char *fname){
-	struct file *file = filesys_open(fname);
-	file_close(file);
+static sys_close(char *fname, int handle){
+	struct list_elem *e;
+	for (e = list_begin(&openFiles); e != list_end(&openFiles); e = list_next(e)){
+		struct filePair *f = list_entry(e, struct filePair, pairElem);
+		if(f->name == fname && f->handle == handle){
+			file_close(f->file);
+			list_remove(e);
+		}
+	 }
 }
 
 static void close_handler(struct intr_frame *f){
 	char *fname;
+	int handle;
 	umem_read(f->esp + 4, &fname, sizeof(fname));
-	f->eax = sys_close(fname);
+	umem_read(f->esp + 8, &handle, sizeof(handle));
+	f->eax = sys_close(fname, handle);
 }
 
 static uint32_t sys_read(int fd, const void *buffer, unsigned size){

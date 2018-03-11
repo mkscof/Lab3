@@ -1,6 +1,6 @@
 Copying tests/userprog/read-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/M3e2dpgDNj.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/w2cUtCKSEe.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run read-normal
@@ -25,11 +25,11 @@ Executing 'read-normal':
 (read-normal) open "sample.txt" for verification
 [ERROR] system call 7 is unimplemented!
 Execution of 'read-normal' complete.
-Timer: 99 ticks
-Thread: 53 idle ticks, 45 kernel ticks, 1 user ticks
+Timer: 100 ticks
+Thread: 55 idle ticks, 44 kernel ticks, 1 user ticks
 hda2 (filesys): 220 reads, 193 writes
 hda3 (scratch): 96 reads, 2 writes
-Console: 994 characters output
+Console: 995 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
