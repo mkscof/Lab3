@@ -60,6 +60,8 @@ static struct list ready_list;
 // List of processes in sleep (wait) state (i.e. wait queue).
 static struct list wait_list;
 
+static struct list children;
+
 // List of all processes.  Processes are added to this list
 // when they are first scheduled and removed when they exit.
 static struct list all_list;
@@ -564,6 +566,8 @@ init_thread (struct thread *t, const char *name, int priority)
   t->priority = priority;
   t->sleep_endtick = 0;
   t->magic = THREAD_MAGIC;
+  t->parent = running_thread();
+  list_init(&t->children);
 
   old_level = intr_disable ();
   list_push_back (&all_list, &t->allelem);

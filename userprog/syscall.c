@@ -134,7 +134,13 @@ syscall_handler(struct intr_frame *f)
 /****************** System Call Implementations ********************/
 
 static bool sys_create(char* fname, int isize){
-	bool success = filesys_create(fname, sizeof(isize), false);
+	bool success;
+	if(strlen(fname) <= 1 || strlen(fname) >= 511){
+		success = false;
+	}
+	else{
+		success = filesys_create(fname, sizeof(isize), false);
+	}
 	return success;
 }
 
@@ -181,6 +187,7 @@ static int sys_open(char *fname, int isize){
 		struct fileStruct *f = list_entry(e, struct fileStruct, pairElem);
 		if(f->name == fname && f->handle == isize){
 			newPair.handle += isize;
+			return newPair.handle;
 		}
 	 }
 	list_push_back(&openFiles, &newPair.pairElem);
@@ -215,6 +222,27 @@ static void close_handler(struct intr_frame *f){
 	f->eax = sys_close(fname, handle);
 }
 
+static int sys_wait(tid_t childId){
+	process_wait(childId);
+
+}
+
+static void wait_handler(struct intr_frame *f){
+	tid_t childId;
+	umem_read(f->esp + 4, &childId, sizeof(childId));
+	f->eax = sys_wait(childId);
+}
+
+static tid_t sys_exec(){
+
+}
+
+static void exec_handler(struct intr_frame *f){
+	tid_t childId;
+	umem_read(f->esp + 4, &childId, sizeof(childId));
+	f->eax = sys_wait(childId);
+}
+
 static uint32_t sys_read(int fd, const void *buffer, unsigned size){
 	umem_check((const uint8_t*) buffer);
 	umem_check((const uint8_t*) buffer + size - 1);
@@ -242,7 +270,6 @@ static void read_handler(struct intr_frame *f){
 
 	f->eax = sys_read(fd, buffer, size);
 }
-
 
 void sys_exit(int status)
 {

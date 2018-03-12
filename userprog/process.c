@@ -38,6 +38,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <list.h>
 
 #include "userprog/tss.h"
 #include "filesys/directory.h"
@@ -61,7 +62,6 @@
 
 static thread_func start_process NO_RETURN;
 static bool load(const char *cmdline, void (**eip) (void), void **esp);
-static struct semaphore sync;
 
 /*
  * Push the command and arguments found in CMDLINE onto the stack, world 
@@ -147,14 +147,15 @@ process_execute(const char *cmdline)
     	token = strtok_r(cmdline_copy, " ", &cmdline_copy);
 
     // Create a Kernel Thread for the new process
-    semaphore_init(&sync, 0);
+    semaphore_init(&thread_current()->pSema, 0);
+    semaphore_init(&thread_current()->sema2, 0);
     	tid_t tid = thread_create(token, PRI_DEFAULT, start_process, cmdline_copy2);
     //timer_sleep(20);
 
     // CMPS111 Lab 3 : The "parent" thread immediately returns after creating 
     // the child. To get ANY of the tests passing, you need to synchronise the 
     // activity of the parent and child threads.
-    	semaphore_down(&sync);
+    	semaphore_down(&thread_current()->pSema);
     return tid;
 }
 
@@ -188,12 +189,14 @@ start_process(void *cmdline)
         push_command(cmdline, &pif.esp);
     }
     palloc_free_page(cmdline);
-    semaphore_up(&sync);
 
     if (!success) {
+    		semaphore_up(&thread_current()->parent->pSema);
         thread_exit();
     }
-
+    else{
+    		semaphore_up(&thread_current()->parent->pSema);
+    }
     // Start the user process by simulating a return from an
     // interrupt, implemented by intr_exit (in threads/intr-stubs.S).  
     // Because intr_exit takes all of its arguments on the stack in 
@@ -213,8 +216,20 @@ start_process(void *cmdline)
    This function will be implemented in Lab 3.  
    For now, it does nothing. */
 int
-process_wait(tid_t child_tid UNUSED)
+process_wait(tid_t child_tid)
 {
+    struct child child;
+    struct thread *curr = thread_current();
+	struct list_elem *e;
+
+   /* for(e = list_begin(&curr->children); e != list_end(&curr->children); e = list_next(e)){
+    		struct child *f = list_entry(e, struct child, childelem);
+    		if(f->childId == child_tid){
+    			semaphore_down(&f->cSema);
+    		}
+    }*/
+
+    semaphore_down(&curr->sema2);
     return -1;
 }
 
@@ -224,6 +239,7 @@ process_exit(void)
 {
     struct thread *cur = thread_current();
     uint32_t *pd;
+    semaphore_up(&cur->parent->sema2);
 
     /* Destroy the current process's page directory and switch back
        to the kernel-only page directory. */

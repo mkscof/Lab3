@@ -6,5 +6,5 @@ userprog/syscall.o: ../../userprog/syscall.c ../../lib/stdio.h \
  ../../filesys/file.h ../../filesys/inode.h ../../devices/block.h \
  ../../lib/inttypes.h ../../filesys/directory.h ../../threads/palloc.h \
  ../../threads/malloc.h ../../threads/interrupt.h ../../threads/thread.h \
- ../../threads/vaddr.h ../../threads/loader.h ../../userprog/syscall.h \
- ../../userprog/process.h ../../userprog/umem.h
+ ../../threads/semaphore.h ../../threads/vaddr.h ../../threads/loader.h \
+ ../../userprog/syscall.h ../../userprog/process.h ../../userprog/umem.h

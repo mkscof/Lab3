@@ -36,6 +36,7 @@
 #include <debug.h>
 #include <list.h>
 #include <stdint.h>
+#include "threads/semaphore.h"
 
 #ifdef VM
 #include "vm/page.h"
@@ -129,10 +130,16 @@ struct thread
     int priority;               // Priority
     struct list_elem allelem;   // List element for all threads list
     struct list_elem waitelem;  // List element, stored in the wait_list queue 
-    int64_t sleep_endtick;      // The tick after which the thread should wakeup 
+    int64_t sleep_endtick;      // The tick after which the thread should wakeup
+    struct list children;
 
-    // Shared between thread.c and smeaphore.c. 
+    struct thread *parent;
+    struct semaphore pSema;
+    struct semaphore sema2;
+
+    // Shared between thread.c and semaphore.c.
     struct list_elem elem;      // List element for the semaphore wiaitng list or the global ready_list
+    struct list_elem child_elem;
 
     // Owned by userprog/process.c. 
     uint32_t *pagedir;     // Pointer to the page directory
@@ -143,6 +150,14 @@ struct thread
     // Owned by thread.c. 
     unsigned magic;        // Detects stack overflow. 
   };
+
+struct child{
+	struct list_elem childelem;
+	char name[16];
+	tid_t childId;
+	struct semaphore cSema;
+	enum thread_status status;
+};
 
 // If false(default), use round-robin scheduler.
 // If true, use multi-level feedback queue scheduler.

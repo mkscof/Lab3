@@ -1,4 +1,4 @@
-TOTAL TESTING SCORE: 72.5%
+TOTAL TESTING SCORE: 87.5%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -8,9 +8,9 @@ Test Set                                      Pts Max  % Ttl  % Max
 --------------------------------------------- --- --- ------ ------
 tests/userprog/Rubric.process                   1/  1  40.0%/ 40.0%
 tests/userprog/Rubric.arguments                 4/  4  20.0%/ 20.0%
-tests/userprog/Rubric.systemcalls               5/ 16  12.5%/ 40.0%
+tests/userprog/Rubric.systemcalls              11/ 16  27.5%/ 40.0%
 --------------------------------------------- --- --- ------ ------
-Total                                                  72.5%/100.0%
+Total                                                  87.5%/100.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -38,22 +38,22 @@ Argument Passing (tests/userprog/Rubric.arguments):
 System Calls (tests/userprog/Rubric.systemcalls):
 
 	- "create" system call.
-	  ** 0/ 1 tests/userprog/create-empty
-	  ** 0/ 1 tests/userprog/create-long
-	  ** 0/ 1 tests/userprog/create-normal
-	  ** 0/ 1 tests/userprog/create-exists
+	     1/ 1 tests/userprog/create-empty
+	     1/ 1 tests/userprog/create-long
+	     1/ 1 tests/userprog/create-normal
+	     1/ 1 tests/userprog/create-exists
 
 	- "open" system call.
 	     1/ 1 tests/userprog/open-missing
 	     1/ 1 tests/userprog/open-normal
-	  ** 0/ 1 tests/userprog/open-twice
+	     1/ 1 tests/userprog/open-twice
 
 	- "read" system call.
 	  ** 0/ 1 tests/userprog/read-normal
 	     1/ 1 tests/userprog/read-zero
 
 	- "write" system call.
-	  ** 0/ 1 tests/userprog/write-normal
+	     1/ 1 tests/userprog/write-normal
 	     1/ 1 tests/userprog/write-zero
 
 	- "close" system call.
@@ -68,6 +68,6 @@ System Calls (tests/userprog/Rubric.systemcalls):
 	  ** 0/ 1 tests/userprog/wait-twice
 
 	- Section summary.
-	      5/ 16 tests passed
-	      5/ 16 points subtotal
+	     11/ 16 tests passed
+	     11/ 16 points subtotal
 
