@@ -51,6 +51,7 @@
 #include "threads/palloc.h"
 #include "threads/malloc.h"
 #include "threads/thread.h"
+#include "threads/semaphore.h"
 #include "threads/vaddr.h"
 #include "userprog/gdt.h"
 #include "userprog/pagedir.h"
@@ -60,6 +61,7 @@
 
 static thread_func start_process NO_RETURN;
 static bool load(const char *cmdline, void (**eip) (void), void **esp);
+static struct semaphore sync;
 
 /*
  * Push the command and arguments found in CMDLINE onto the stack, world 
@@ -145,13 +147,14 @@ process_execute(const char *cmdline)
     	token = strtok_r(cmdline_copy, " ", &cmdline_copy);
 
     // Create a Kernel Thread for the new process
-    tid_t tid = thread_create(token, PRI_DEFAULT, start_process, cmdline_copy2);
-    timer_sleep(20);
+    semaphore_init(&sync, 0);
+    	tid_t tid = thread_create(token, PRI_DEFAULT, start_process, cmdline_copy2);
+    //timer_sleep(20);
 
     // CMPS111 Lab 3 : The "parent" thread immediately returns after creating 
     // the child. To get ANY of the tests passing, you need to synchronise the 
     // activity of the parent and child threads.
-
+    	semaphore_down(&sync);
     return tid;
 }
 
@@ -185,6 +188,7 @@ start_process(void *cmdline)
         push_command(cmdline, &pif.esp);
     }
     palloc_free_page(cmdline);
+    semaphore_up(&sync);
 
     if (!success) {
         thread_exit();

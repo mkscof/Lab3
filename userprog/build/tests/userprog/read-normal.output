@@ -1,6 +1,6 @@
 Copying tests/userprog/read-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/w2cUtCKSEe.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/8SGUaxp2af.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run read-normal
@@ -9,7 +9,7 @@ Pintos booting with 3,968 kB RAM...
 367 pages available in user pool.
 Calibrating timer...  419,020,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
-hda1: 194 sectors (97 kB), Pintos OS kernel (20)
+hda1: 203 sectors (101 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
 hda3: 97 sectors (48 kB), Pintos scratch (22)
 filesys: using hda2
@@ -23,13 +23,15 @@ Erasing ustar archive...
 Executing 'read-normal':
 (read-normal) begin
 (read-normal) open "sample.txt" for verification
-[ERROR] system call 7 is unimplemented!
+(read-normal) size of sample.txt (49) differs from expected (239)
+(read-normal) size of sample.txt (49) differs from expected (239): FAILED
+read-normal: exit(1)
 Execution of 'read-normal' complete.
-Timer: 100 ticks
-Thread: 55 idle ticks, 44 kernel ticks, 1 user ticks
+Timer: 80 ticks
+Thread: 33 idle ticks, 46 kernel ticks, 1 user ticks
 hda2 (filesys): 220 reads, 193 writes
 hda3 (scratch): 96 reads, 2 writes
-Console: 995 characters output
+Console: 1116 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -36,7 +36,7 @@
 /*
  * Asserts the user memory address UADDR is valid. 
  *
- * Returns void if the memory is valid. Invalid adresses cause a segmentation 
+ * Returns void if the memory is valid. Invalid addresses cause a segmentation
  * fault and the system will exit.
  */
 void umem_check(const uint8_t *uaddr);

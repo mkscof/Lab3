@@ -1,5 +1,5 @@
 Copying tests/userprog/args-single to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/29Z6cmrmq0.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/6UFf3sGCwU.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run 'args-single onearg'
@@ -8,7 +8,7 @@ Pintos booting with 3,968 kB RAM...
 367 pages available in user pool.
 Calibrating timer...  419,020,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
-hda1: 194 sectors (97 kB), Pintos OS kernel (20)
+hda1: 203 sectors (101 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
 hda3: 94 sectors (47 kB), Pintos scratch (22)
 filesys: using hda2
@@ -27,8 +27,8 @@ Executing 'args-single onearg':
 (args) end
 args-single: exit(0)
 Execution of 'args-single onearg' complete.
-Timer: 104 ticks
-Thread: 58 idle ticks, 46 kernel ticks, 0 user ticks
+Timer: 85 ticks
+Thread: 38 idle ticks, 47 kernel ticks, 0 user ticks
 hda2 (filesys): 214 reads, 187 writes
 hda3 (scratch): 93 reads, 2 writes
 Console: 1004 characters output

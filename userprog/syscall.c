@@ -1,8 +1,8 @@
-/* 
+/*
  * This file is derived from source code for the Pintos
  * instructional operating system which is itself derived
- * from the Nachos instructional operating system. The 
- * Nachos copyright notice is reproduced in full below. 
+ * from the Nachos instructional operating system. The
+ * Nachos copyright notice is reproduced in full below.
  *
  * Copyright (C) 1992-1996 The Regents of the University of California.
  * All rights reserved.
@@ -27,7 +27,7 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR
  * MODIFICATIONS.
  *
- * Modifications Copyright (C) 2017-2018 David C. Harrison. 
+ * Modifications Copyright (C) 2017-2018 David C. Harrison.
  * All rights reserved.
  */
 
@@ -60,8 +60,9 @@ static void close_handler(struct intr_frame *);
 static void read_handler(struct intr_frame *);
 static void exec_handler(struct intr_frame *);
 static void wait_handler(struct intr_frame *);
+static void fsize_handler(struct intr_frame *);
 
-struct filePair{
+struct fileStruct{
 	struct list_elem pairElem;
 	struct file *file;
 	char *name;
@@ -91,15 +92,15 @@ syscall_handler(struct intr_frame *f)
   thread_current()->current_esp = f->esp;
 
   switch (syscall) {
-  case SYS_HALT: 
+  case SYS_HALT:
     shutdown_power_off();
     break;
 
-  case SYS_EXIT: 
+  case SYS_EXIT:
     exit_handler(f);
     break;
-      
-  case SYS_WRITE: 
+
+  case SYS_WRITE:
     write_handler(f);
     break;
 
@@ -119,6 +120,10 @@ syscall_handler(struct intr_frame *f)
 	read_handler(f);
 	break;
 
+  case SYS_FILESIZE:
+	fsize_handler(f);
+	break;
+
   default:
     printf("[ERROR] system call %d is unimplemented!\n", syscall);
     thread_exit();
@@ -135,20 +140,49 @@ static bool sys_create(char* fname, int isize){
 
 static void create_handler(struct intr_frame *f){
 	int isize;
-	char* fname;
+	char *fname;
 	umem_read(f->esp + 4, &fname, sizeof(fname));
 	umem_read(f->esp + 8, &isize, sizeof(isize));
 	f->eax = sys_create(fname, isize);
+}
+
+static int sys_fsize(char *fname, int handle){
+	struct list_elem *e;
+	int ret;
+
+	for (e = list_begin(&openFiles); e != list_end(&openFiles); e = list_next(e)){
+		struct fileStruct *f = list_entry(e, struct fileStruct, pairElem);
+		if(f->name == fname && f->handle == handle){
+			ret = file_length(f->file);
+		}
+	}
+	return ret;
+}
+
+static void fsize_handler(struct intr_frame *f){
+	int isize;
+	char *fname;
+	umem_read(f->esp + 4, &fname, sizeof(fname));
+	umem_read(f->esp + 8, &isize, sizeof(isize));
+	f->eax = sys_fsize(fname, isize);
 }
 
 static int sys_open(char *fname, int isize){
 	if(filesys_open(fname) == NULL){
 		return -1;
 	}
-	struct filePair newPair;
+	struct fileStruct newPair;
 	newPair.file = filesys_open(fname);
 	newPair.name = fname;
 	newPair.handle = isize;
+
+	struct list_elem *e;
+	for (e = list_begin(&openFiles); e != list_end(&openFiles); e = list_next(e)){
+		struct fileStruct *f = list_entry(e, struct fileStruct, pairElem);
+		if(f->name == fname && f->handle == isize){
+			newPair.handle += isize;
+		}
+	 }
 	list_push_back(&openFiles, &newPair.pairElem);
 
 	return isize;
@@ -165,7 +199,7 @@ static void open_handler(struct intr_frame *f){
 static sys_close(char *fname, int handle){
 	struct list_elem *e;
 	for (e = list_begin(&openFiles); e != list_end(&openFiles); e = list_next(e)){
-		struct filePair *f = list_entry(e, struct filePair, pairElem);
+		struct fileStruct *f = list_entry(e, struct fileStruct, pairElem);
 		if(f->name == fname && f->handle == handle){
 			file_close(f->file);
 			list_remove(e);
@@ -182,14 +216,31 @@ static void close_handler(struct intr_frame *f){
 }
 
 static uint32_t sys_read(int fd, const void *buffer, unsigned size){
+	umem_check((const uint8_t*) buffer);
+	umem_check((const uint8_t*) buffer + size - 1);
 
+	uint32_t ret = -1;
+
+	struct list_elem *e;
+	for (e = list_begin(&openFiles); e != list_end(&openFiles); e = list_next(e)){
+		struct fileStruct *f = list_entry(e, struct fileStruct, pairElem);
+	  	if(f->handle == fd){
+	  		ret = file_read(f->file, buffer, size);
+	  	}
+	}
+	return ret;
 }
 
 static void read_handler(struct intr_frame *f){
-	int isize;
-	char *fname;
-	umem_read(f->esp + 4, &fname, sizeof(fname));
-	umem_read(f->esp + 8, &isize, sizeof(isize));
+	int fd;
+	const void *buffer;
+	unsigned size;
+
+	umem_read(f->esp + 4, &fd, sizeof(fd));
+	umem_read(f->esp + 8, &buffer, sizeof(buffer));
+	umem_read(f->esp + 12, &size, sizeof(size));
+
+	f->eax = sys_read(fd, buffer, size);
 }
 
 
@@ -199,7 +250,7 @@ void sys_exit(int status)
   thread_exit();
 }
 
-static void exit_handler(struct intr_frame *f) 
+static void exit_handler(struct intr_frame *f)
 {
   int exitcode;
   umem_read(f->esp + 4, &exitcode, sizeof(exitcode));
@@ -220,7 +271,14 @@ static uint32_t sys_write(int fd, const void *buffer, unsigned size)
     putbuf(buffer, size);
     ret = size;
   }
-
+  struct list_elem *e;
+  	for (e = list_begin(&openFiles); e != list_end(&openFiles); e = list_next(e)){
+  		struct fileStruct *f = list_entry(e, struct fileStruct, pairElem);
+  		if(f->handle == fd){
+  			file_write(f->file, buffer, size);
+  			ret = size;
+  		}
+  	 }
   return (uint32_t) ret;
 }
 

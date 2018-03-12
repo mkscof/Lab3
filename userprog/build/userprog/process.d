@@ -9,6 +9,6 @@ userprog/process.o: ../../userprog/process.c ../../lib/debug.h \
  ../../threads/palloc.h ../../vm/page.h ../../vm/swap.h \
  ../../threads/flags.h ../../threads/init.h ../../threads/interrupt.h \
  ../../threads/malloc.h ../../threads/thread.h ../../lib/kernel/list.h \
- ../../threads/vaddr.h ../../threads/loader.h ../../userprog/gdt.h \
- ../../userprog/pagedir.h ../../userprog/syscall.h \
+ ../../threads/semaphore.h ../../threads/vaddr.h ../../threads/loader.h \
+ ../../userprog/gdt.h ../../userprog/pagedir.h ../../userprog/syscall.h \
  ../../userprog/process.h ../../devices/timer.h

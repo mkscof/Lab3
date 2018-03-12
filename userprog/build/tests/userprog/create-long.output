@@ -1,5 +1,5 @@
 Copying tests/userprog/create-long to scratch partition...
-qemu-system-i386 -device isa-debug-exit -hda /tmp/Jd7heFU01M.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -hda /tmp/lUyNJM0aOC.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading............
 Kernel command line: -q -f extract run create-long
@@ -8,7 +8,7 @@ Pintos booting with 3,968 kB RAM...
 367 pages available in user pool.
 Calibrating timer...  419,020,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
-hda1: 194 sectors (97 kB), Pintos OS kernel (20)
+hda1: 203 sectors (101 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
 hda3: 95 sectors (47 kB), Pintos scratch (22)
 filesys: using hda2
@@ -20,13 +20,13 @@ Putting 'create-long' into the file system...
 Erasing ustar archive...
 Executing 'create-long':
 (create-long) begin
+Execution of 'create-long' complete.
 (create-long) create("x..."): 0
 (create-long) end
 create-long: exit(0)
-Execution of 'create-long' complete.
-Timer: 103 ticks
-Thread: 57 idle ticks, 45 kernel ticks, 1 user ticks
-hda2 (filesys): 219 reads, 192 writes
+Timer: 84 ticks
+Thread: 36 idle ticks, 48 kernel ticks, 0 user ticks
+hda2 (filesys): 217 reads, 190 writes
 hda3 (scratch): 94 reads, 2 writes
 Console: 932 characters output
 Keyboard: 0 keys pressed
